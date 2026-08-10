@@ -16,22 +16,17 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-		http
-				// 啟用 CORS
-				.cors(cors -> {
-				})
+		http.cors(cors -> {
+		}).csrf(csrf -> csrf.disable())
 
-				// REST API 暫時關閉 CSRF
-				.csrf(csrf -> csrf.disable())
-
-				// API 權限
 				.authorizeHttpRequests(auth -> auth
-
-						// 登入、註冊不用登入
+						//登入、註冊一開始就能用
 						.requestMatchers("/api/auth/login", "/api/auth/register").permitAll()
 
-						// 其他 API
-						.anyRequest().authenticated());
+						.anyRequest().authenticated())
+
+				.logout(logout -> logout.logoutUrl("/api/auth/logout").invalidateHttpSession(true)
+						.clearAuthentication(true).deleteCookies("JSESSIONID"));
 
 		return http.build();
 	}

@@ -5,19 +5,17 @@ import com.example.scheduleApp.Repository.UserRepository;
 import com.example.scheduleApp.Request.LoginRequest;
 import com.example.scheduleApp.Request.RegisterRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class AuthService {
 
-	private final UserRepository userRepository;
+	@Autowired
+	private UserRepository userRepository;
 
 	private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
-	public AuthService(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
 
 	// =========================
 	// 註冊
