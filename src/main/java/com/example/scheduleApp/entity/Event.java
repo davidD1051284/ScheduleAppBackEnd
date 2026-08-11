@@ -1,6 +1,8 @@
 package com.example.scheduleApp.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -22,7 +24,7 @@ public class Event {
 	private String title;
 
 	@Column(name = "event_date")
-	private LocalDateTime eventDate;
+	private LocalDate eventDate;
 
 	@Column(name = "event_group")
 	private String eventGroup;
@@ -31,13 +33,13 @@ public class Event {
 	private String content;
 
 	@Column(name = "inform")
-	private Boolean inform;
+	private LocalTime inform;
 
 	@Column(name = "focus")
 	private Boolean focus;
 
 	@Column(name = "completed")
-	private Boolean completed;
+	private Boolean completed = false;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
@@ -55,11 +57,11 @@ public class Event {
 		this.title = title;
 	}
 
-	public LocalDateTime getEventDate() {
+	public LocalDate getEventDate() {
 		return eventDate;
 	}
 
-	public void setEventDate(LocalDateTime eventDate) {
+	public void setEventDate(LocalDate eventDate) {
 		this.eventDate = eventDate;
 	}
 
@@ -79,11 +81,11 @@ public class Event {
 		this.content = content;
 	}
 
-	public Boolean getInform() {
+	public LocalTime getInform() {
 		return inform;
 	}
 
-	public void setInform(Boolean inform) {
+	public void setInform(LocalTime inform) {
 		this.inform = inform;
 	}
 

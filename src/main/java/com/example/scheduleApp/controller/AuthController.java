@@ -77,8 +77,9 @@ public class AuthController {
 			// 保存到 Session
 			httpRequest.getSession(true).setAttribute("SPRING_SECURITY_CONTEXT", securityContext);
 
-			return ResponseEntity
-					.ok(Map.of("message", "登入成功", "id", user.getId(), "username", user.getUserAccount()));
+			return ResponseEntity.ok(Map.of("message", "登入成功", "id", user.getId(), "username", user.getUsername(),
+					"eventCount", user.getEventCount(), "finishedCount", user.getFinishedCount(), "unfinishedCount",
+					user.getUnfinishedCount()));
 
 		} catch (RuntimeException e) {
 
@@ -101,6 +102,7 @@ public class AuthController {
 
 		User user = userRepository.findByUserAccount(userAccount).orElseThrow();
 
-		return new UserInfoResponse(user.getId(), user.getUserAccount(), user.getUsername());
+		return new UserInfoResponse(user.getId(), user.getUserAccount(), user.getUsername(), user.getEventCount(),
+				user.getFinishedCount(), user.getUnfinishedCount());
 	}
 }

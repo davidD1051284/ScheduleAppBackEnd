@@ -12,7 +12,7 @@ public class User {
 	private Long id;
 
 	@Column(name = "user_name")
-	private String username;
+	private String username = "user";
 
 	@Column(name = "user_account", nullable = false, unique = true)
 	private String userAccount;
@@ -22,6 +22,15 @@ public class User {
 
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
+
+	@Column(name = "event_count")
+	private int eventCount = 0;
+
+	@Column(name = "finish_count")
+	private int finishedCount = 0;
+
+	@Column(name = "unfinish_count")
+	private int unfinishedCount = 0;
 
 	public Long getId() {
 		return id;
@@ -59,4 +68,29 @@ public class User {
 	public void prePersist() {
 		createdAt = LocalDateTime.now();
 	}
+
+	public int getEventCount() {
+		return eventCount;
+	}
+
+	public void setEventCount(int eventCount) {
+		this.eventCount = eventCount;
+	}
+
+	public int getFinishedCount() {
+		return finishedCount;
+	}
+
+	public void setFinishedCount(int finishedCount) {
+		this.finishedCount = finishedCount;
+	}
+
+	public int getUnfinishedCount() {
+		return unfinishedCount;
+	}
+
+	public void setUnfinishedCount(int unfinishedCount) {
+		this.unfinishedCount = unfinishedCount;
+	}
+
 }
