@@ -28,6 +28,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 	
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security'
+	
+    // LangChain4j OllamaAI - Spring Boot 4
+	implementation 'dev.langchain4j:langchain4j-ollama:1.18.1'
 }
 
 tasks.named('test') {
